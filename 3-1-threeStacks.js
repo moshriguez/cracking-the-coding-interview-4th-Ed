@@ -64,10 +64,13 @@ class AnotherThreeStacks {
     }
 
     pop(stackNum) {
-        const index = stackNum * this.stackSize + this.stackPointer[stackNum]
-        this.stackPointer[stackNum]--
-        const value = this.all[index]
-        this.all[index] = undefined
+        let value
+        if (this.stackPointer[stackNum] > 0) {
+            const index = stackNum * this.stackSize + this.stackPointer[stackNum] - 1
+            value = this.all[index]
+            this.all[index] = undefined
+            this.stackPointer[stackNum]--
+        }
         return value
     }
 }
