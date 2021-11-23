@@ -57,9 +57,10 @@ class AnotherThreeStacks {
         this.stackPointer = [0, 0, 0]
     }
     push(stackNum, value) {
+        if (this.stackPointer[stackNum] === this.stackSize) return 'Error: Cannot perform operation: Stack size exceeded'
         const index = stackNum * this.stackSize + this.stackPointer[stackNum]
-        this.stackPointer[stackNum]++
         this.all[index] = value
+        return ++this.stackPointer[stackNum]
     }
 
     pop(stackNum) {
