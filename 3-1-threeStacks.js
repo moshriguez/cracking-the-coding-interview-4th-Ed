@@ -49,7 +49,7 @@ class ThreeStacks {
     }
 }
 
-// This implementation has a BigO(1) for each stack, but will run into problems when the stack size is exceeded
+// This implementation has a BigO(1) for each stack, but has a fixed stack size
 class AnotherThreeStacks {
     constructor(stackSize) {
         this.stackSize = stackSize
