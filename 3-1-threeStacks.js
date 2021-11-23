@@ -1,5 +1,6 @@
 // Describe how you could use a single array to implement three stacks
 
+// the issue with this implementation is that all but the last stack has a BigO(n) rather than BigO(1)
 class ThreeStacks {
     constructor() {
         this.all = []
@@ -45,5 +46,27 @@ class ThreeStacks {
             this.lastLength--
         }
         return removedItem
+    }
+}
+
+// This implementation has a BigO(1) for each stack, but will run into problems when the stack size is exceeded
+class AnotherThreeStacks {
+    constructor(stackSize) {
+        this.stackSize = stackSize
+        this.all = new Array(stackSize * 3)
+        this.stackPointer = [0, 0, 0]
+    }
+    push(stackNum, value) {
+        const index = stackNum * this.stackSize + this.stackPointer[stackNum]
+        this.stackPointer[stackNum]++
+        this.all[index] = value
+    }
+
+    pop(stackNum) {
+        const index = stackNum * this.stackSize + this.stackPointer[stackNum]
+        this.stackPointer[stackNum]--
+        const value = this.all[index]
+        this.all[index] = undefined
+        return value
     }
 }
